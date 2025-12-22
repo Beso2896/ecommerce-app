@@ -7,6 +7,7 @@ import { Login } from './components/login/login';
 import { NotFound } from './components/not-found/not-found';
 import { authGuard } from './guards/auth-guard';
 
+
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'product/:id', component: ProductDetails },
