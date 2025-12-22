@@ -1,0 +1,55 @@
+<div class="product-details-container">
+  <button class="back-btn" (click)="goBack()">← Back to Products</button>
+
+  <div *ngIf="loading" class="loading">
+    <p>Loading product details...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!loading && !error && product" class="product-details">
+    <div class="product-image-section">
+      <img [src]="product.image" [alt]="product.title">
+    </div>
+
+    <div class="product-info-section">
+      <div class="category-badge">{{ product.category }}</div>
+      
+      <h1 class="product-title">{{ product.title }}</h1>
+      
+      <div class="product-rating">
+        <span class="stars">⭐ {{ product.rating.rate }}</span>
+        <span class="review-count">({{ product.rating.count }} reviews)</span>
+      </div>
+
+      <div class="product-price">${{ product.price | number:'1.2-2' }}</div>
+
+      <div class="product-description">
+        <h3>Description</h3>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div class="product-actions">
+        <button 
+          *ngIf="!isInCart()" 
+          class="btn btn-add" 
+          (click)="addToCart()">
+          Add to Cart
+        </button>
+        
+        <button 
+          *ngIf="isInCart()" 
+          class="btn btn-remove" 
+          (click)="removeFromCart()">
+          Remove from Cart
+        </button>
+
+        <button class="btn btn-cart" (click)="goToCart()">
+          Go to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

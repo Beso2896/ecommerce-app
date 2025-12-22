@@ -1,0 +1,225 @@
+.admin-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  .admin-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      color: #333;
+      margin: 0 0 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .welcome {
+      color: #666;
+      font-size: 1.1rem;
+
+      strong {
+        color: #4CAF50;
+      }
+    }
+  }
+
+  .admin-content {
+    display: grid;
+    // grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+    }
+
+    .form-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+      h2 {
+        margin: 0 0 0.5rem;
+        color: #333;
+      }
+
+      .subtitle {
+        color: #666;
+        margin: 0 0 2rem;
+      }
+
+      form {
+        .form-group {
+          display: flex;
+          flex-direction: column;          
+          margin-bottom: 1.5rem;
+
+          label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+          }
+
+          .form-control {
+
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+
+            &:focus {
+              outline: none;
+              border-color: #4CAF50;
+            }
+
+            &.is-invalid {
+              border-color: #f44336;
+            }
+          }
+
+          textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+          }
+
+          select.form-control {
+            cursor: pointer;
+          }
+
+          .error-message {
+            color: #f44336;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+          }
+
+          .image-preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 6px;
+            text-align: center;
+
+            img {
+              max-width: 200px;
+              max-height: 200px;
+              object-fit: contain;
+            }
+          }
+        }
+
+        .alert {
+          padding: 1rem;
+          border-radius: 6px;
+          margin-bottom: 1.5rem;
+          font-weight: 500;
+
+          &.alert-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #81c784;
+          }
+
+          &.alert-error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+          }
+        }
+
+        .form-actions {
+        //   display: grid;
+        //   grid-template-columns: repeat(3, 1fr);
+        //   gap: 1rem;
+          margin-top: 2rem;
+
+          @media (max-width: 768px) {
+            // grid-template-columns: 1fr;
+          }
+
+          .btn {
+            padding: 0.875rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &.btn-submit {
+              background-color: #4CAF50;
+              color: white;
+
+              &:hover {
+                background-color: #45a049;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+              }
+            }
+
+            &.btn-reset {
+              background-color: #ff9800;
+              color: white;
+
+              &:hover {
+                background-color: #f57c00;
+              }
+            }
+
+            &.btn-home {
+              background-color: #2196F3;
+              color: white;
+
+              &:hover {
+                background-color: #0b7dda;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      height: fit-content;
+      position: sticky;
+      top: 1rem;
+
+      h3 {
+        color: #333;
+        margin: 0 0 1rem;
+        font-size: 1.25rem;
+
+        &:not(:first-child) {
+          margin-top: 2rem;
+        }
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        color: #555;
+
+        li {
+          margin-bottom: 0.5rem;
+          line-height: 1.5;
+        }
+      }
+
+      p {
+        color: #666;
+        line-height: 1.6;
+        margin: 0;
+        padding: 1rem;
+        background-color: #fff3cd;
+        border-left: 4px solid #ffc107;
+        border-radius: 4px;
+      }
+    }
+  }
+}

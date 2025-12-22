@@ -1,0 +1,142 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <h1>Admin Panel</h1>
+    <p class="welcome">Welcome, <strong>{{ currentUser }}</strong>!</p>
+  </div>
+
+  <div class="admin-content">
+    <div class="form-card">
+      <h2>Add New Product</h2>
+      <p class="subtitle">Fill in the details to add a new product to the store</p>
+
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <!-- Title Field -->
+        <div class="form-group">
+          <label for="title">Product Title *</label>
+          <input 
+            type="text" 
+            id="title" 
+            formControlName="title"
+            class="form-control"
+            placeholder="Enter product title"
+            [class.is-invalid]="submitted && f['title'].errors">
+          
+          <div *ngIf="submitted && f['title'].errors" class="error-message">
+            <span *ngIf="f['title'].errors['required']">Title is required</span>
+            <span *ngIf="f['title'].errors['minlength']">Title must be at least 3 characters</span>
+            <span *ngIf="f['title'].errors['maxlength']">Title cannot exceed 100 characters</span>
+          </div>
+        </div>
+
+        <!-- Price Field -->
+        <div class="form-group">
+          <label for="price">Price ($) *</label>
+          <input 
+            type="number" 
+            id="price" 
+            formControlName="price"
+            class="form-control"
+            placeholder="0.00"
+            step="0.01"
+            [class.is-invalid]="submitted && f['price'].errors">
+          
+          <div *ngIf="submitted && f['price'].errors" class="error-message">
+            <span *ngIf="f['price'].errors['required']">Price is required</span>
+            <span *ngIf="f['price'].errors['min']">Price must be greater than 0</span>
+          </div>
+        </div>
+
+        <!-- Category Field -->
+        <div class="form-group">
+          <label for="category">Category *</label>
+          <select 
+            id="category" 
+            formControlName="category"
+            class="form-control"
+            [class.is-invalid]="submitted && f['category'].errors">
+            <option value="">Select a category</option>
+            <option value="electronics">Electronics</option>
+            <option value="jewelery">Jewelery</option>
+            <option value="men's clothing">Men's Clothing</option>
+            <option value="women's clothing">Women's Clothing</option>
+          </select>
+          
+          <div *ngIf="submitted && f['category'].errors" class="error-message">
+            <span *ngIf="f['category'].errors['required']">Category is required</span>
+          </div>
+        </div>
+
+        <!-- Image URL Field -->
+        <div class="form-group">
+          <label for="image">Image URL *</label>
+          <input 
+            type="url" 
+            id="image" 
+            formControlName="image"
+            class="form-control"
+            placeholder="https://example.com/image.jpg"
+            [class.is-invalid]="submitted && f['image'].errors">
+          
+          <div *ngIf="submitted && f['image'].errors" class="error-message">
+            <span *ngIf="f['image'].errors['required']">Image URL is required</span>
+            <span *ngIf="f['image'].errors['pattern']">Please enter a valid URL starting with http:// or https://</span>
+          </div>
+
+          <!-- Image Preview -->
+          <div *ngIf="productForm.get('image')?.valid" class="image-preview">
+            <img [src]="productForm.get('image')?.value" alt="Product preview">
+          </div>
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-group">
+          <label for="description">Description *</label>
+          <textarea 
+            id="description" 
+            formControlName="description"
+            class="form-control"
+            rows="4"
+            placeholder="Enter product description"
+            [class.is-invalid]="submitted && f['description'].errors"></textarea>
+          
+          <div *ngIf="submitted && f['description'].errors" class="error-message">
+            <span *ngIf="f['description'].errors['required']">Description is required</span>
+            <span *ngIf="f['description'].errors['minlength']">Description must be at least 10 characters</span>
+            <span *ngIf="f['description'].errors['maxlength']">Description cannot exceed 500 characters</span>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="successMessage" class="alert alert-success">
+          {{ successMessage }}
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="alert alert-error">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-submit">Add Product</button>
+          <button type="button" class="btn btn-reset" (click)="resetForm()">Reset Form</button>
+          <button type="button" class="btn btn-home" (click)="goToHome()">Back to Home</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Info Card -->
+    <!-- <div class="info-card">
+      <h3>Instructions</h3>
+      <ul>
+        <li>All fields marked with * are required</li>
+        <li>Price must be a positive number</li>
+        <li>Image URL must start with http:// or https://</li>
+        <li>Description should be between 10-500 characters</li>
+      </ul>
+
+      <h3>Note</h3>
+      <p>This is a demo using the Fake Store API. Products won't actually be saved permanently, but the API will simulate the addition.</p>
+    </div> -->
+  </div>
+</div>

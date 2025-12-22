@@ -1,0 +1,42 @@
+<div class="home-container">
+  <h1>Our Products</h1>
+
+  <div *ngIf="loading" class="loading">
+    <p>Loading products...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!loading && !error" class="products-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <div class="product-image" (click)="viewDetails(product.id)">
+        <img [src]="product.image" [alt]="product.title">
+      </div>
+      
+      <div class="product-info">
+        <h3 class="product-title" (click)="viewDetails(product.id)">{{ product.title }}</h3>
+        <p class="product-category">{{ product.category }}</p>
+        <p class="product-price">${{ product.price | number:'1.2-2' }}</p>
+        
+        <div class="product-rating">
+          <span>⭐ {{ product.rating.rate }}</span>
+          <span class="review-count">({{ product.rating.count }} reviews)</span>
+        </div>
+        
+        <div class="product-actions">
+          <button 
+            class="btn btn-primary" 
+            (click)="addToCart(product)"
+            [disabled]="isInCart(product.id)">
+            {{ isInCart(product.id) ? 'In Cart' : 'Add to Cart' }}
+          </button>
+          <button class="btn btn-secondary" (click)="viewDetails(product.id)">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Admin Login</h1>
+    <p class="subtitle">Sign in to access the admin panel</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          formControlName="username"
+          class="form-control"
+          [class.is-invalid]="submitted && f['username'].errors">
+        
+        @if (submitted && f['username'].errors) {
+          <div class="error-message">
+            @if (f['username'].errors['required']) {
+              Username is required
+            }
+            @if (f['username'].errors['minlength']) {
+              Username must be at least 3 characters
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="submitted && f['password'].errors">
+        
+        <div *ngIf="submitted && f['password'].errors" class="error-message">
+          <span *ngIf="f['password'].errors['required']">Password is required</span>
+          <span *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert alert-error">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Demo Credentials Info -->
+      <!-- <div class="demo-info">
+        <p><strong>Demo Credentials:</strong></p>
+        <p>Username: <code>admin</code></p>
+        <p>Password: <code>admin123</code></p>
+      </div> -->
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button type="submit" class="btn btn-login">Login</button>
+        <button type="button" class="btn btn-back" (click)="goToHome()">Back to Home</button>
+      </div>
+    </form>
+  </div>
+</div>
