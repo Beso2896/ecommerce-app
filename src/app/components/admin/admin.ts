@@ -28,7 +28,6 @@ export class Admin implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
     
-    // Initialize form with validation
     this.productForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       price: ['', [Validators.required, Validators.min(0.01)]],
@@ -38,7 +37,6 @@ export class Admin implements OnInit {
     });
   }
 
-  // Getter for easy access to form fields
   get f() {
     return this.productForm.controls;
   }
@@ -48,7 +46,6 @@ export class Admin implements OnInit {
     this.successMessage = '';
     this.errorMessage = '';
 
-    // Stop if form is invalid
     if (this.productForm.invalid) {
       this.errorMessage = 'Please fix the errors in the form';
       return;
@@ -63,13 +60,11 @@ export class Admin implements OnInit {
       }
     };
 
-    // Call API to add product
     this.productService.addProduct(productData).subscribe({
       next: (response) => {
         this.successMessage = 'Product added successfully!';
         console.log('Product added:', response);
         
-        // Reset form after 2 seconds
         setTimeout(() => {
           this.resetForm();
         }, 2000);

@@ -22,12 +22,10 @@ export class Navbar implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to cart changes
     this.cartService.getCart().subscribe(items => {
       this.cartItemCount = this.cartService.getTotalItems();
     });
 
-    // Subscribe to authentication changes
     this.authService.isAuthenticated().subscribe(status => {
       this.isLoggedIn = status;
       this.currentUser = this.authService.getCurrentUser();

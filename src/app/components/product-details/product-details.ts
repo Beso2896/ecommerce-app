@@ -24,7 +24,6 @@ export class ProductDetails implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get product ID from route params
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadProduct(+id);

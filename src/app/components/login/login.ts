@@ -22,19 +22,16 @@ export class Login implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // If already logged in, redirect to admin
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/admin']);
     }
 
-    // Initialize form with validation
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  // Getter for easy access to form fields
   get f() {
     return this.loginForm.controls;
   }
@@ -43,7 +40,6 @@ export class Login implements OnInit {
     this.submitted = true;
     this.errorMessage = '';
 
-    // Stop if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
@@ -51,10 +47,8 @@ export class Login implements OnInit {
     const { username, password } = this.loginForm.value;
 
     if (this.authService.login(username, password)) {
-      // Login successful
       this.router.navigate(['/admin']);
     } else {
-      // Login failed
       this.errorMessage = 'Invalid username or password. Try admin/admin123';
     }
   }
