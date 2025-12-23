@@ -44,10 +44,13 @@ export class Cart implements OnInit {
     }
   }
 
+  // removeItem(productId: number): void {
+  //   if (confirm('Are you sure you want to remove this item?')) {
+  //     this.cartService.removeFromCart(productId);
+  //   }
+  // }
   removeItem(productId: number): void {
-    if (confirm('Are you sure you want to remove this item?')) {
-      this.cartService.removeFromCart(productId);
-    }
+    this.cartService.removeFromCart(productId);
   }
 
   clearCart(): void {

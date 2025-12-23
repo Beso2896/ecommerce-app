@@ -42,7 +42,7 @@ export class Home implements OnInit {
 
   addToCart(product: Product): void {
     this.cartService.addToCart(product);
-    alert(`${product.title} added to cart!`);
+
   }
 
   viewDetails(productId: number): void {
